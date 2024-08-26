@@ -8,7 +8,7 @@ export interface IDataLoader {
 export class DataLoader implements IDataLoader {
   loadCalendarData(calendarName: string): CalendarData {
     try {
-      const rawData = readFileSync(`./src/calendars/calendar.${calendarName}.json`, 'utf-8');
+      const rawData = readFileSync(`./src/db/calendar.${calendarName}.json`, 'utf-8');
       const parsedData = JSON.parse(rawData);
       return {
         durationBefore: parsedData.durationBefore,

@@ -2,7 +2,7 @@ import { Slot, AvailableSlot } from '../types';
 import { DataLoader, IDataLoader } from './DataLoader';
 import { DateHandler } from '../helpers/DateHandler';
 import { ISessionManager, SessionManager } from './SessionManager';
-import { SlotManager } from './SlotManager';
+import { ISlotManager, SlotManager } from './SlotManager';
 
 export class Calendar {
   private durationBefore: number;
@@ -10,21 +10,20 @@ export class Calendar {
   private slots: Record<string, Slot[]>;
   private sessions: Record<string, Slot[]>;
   private dateHandler: DateHandler;
-  private slotManager: SlotManager;
+  private slotManager: ISlotManager;
   private sessionManager: ISessionManager;
 
   constructor(
     calendarName: string,
     private dataLoader: IDataLoader = new DataLoader(),
-    dateHandler: DateHandler = new DateHandler(),
   ) {
     const data = this.dataLoader.loadCalendarData(calendarName);
     this.durationBefore = data.durationBefore;
     this.durationAfter = data.durationAfter;
     this.slots = data.slots;
     this.sessions = data.sessions;
-    this.dateHandler = dateHandler;
-    this.slotManager = new SlotManager(dateHandler, this.durationBefore, this.durationAfter);
+    this.dateHandler = new DateHandler();
+    this.slotManager = new SlotManager(this.dateHandler, this.durationBefore, this.durationAfter);
     this.sessionManager = new SessionManager(this.slotManager);
   }
 
