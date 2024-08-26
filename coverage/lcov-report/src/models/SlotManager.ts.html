@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/models/Calendar.ts</title>
+    <title>Code coverage report for src/models/SlotManager.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> Calendar.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> SlotManager.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.55% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>28/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/28</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
@@ -111,22 +111,28 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,11 +140,12 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,66 +153,92 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Slot, AvailableSlot } from '../types';
-import { DataLoader, IDataLoader } from './DataLoader';
+import { addMinutes } from 'date-fns';
 import { DateHandler } from '../helpers/DateHandler';
-import { ISessionManager, SessionManager } from './SessionManager';
-import { SlotManager } from './SlotManager';
 &nbsp;
-export class Calendar {
-  private durationBefore: number;
-  private durationAfter: number;
-  private slots: Record&lt;string, Slot[]&gt;;
-  private sessions: Record&lt;string, Slot[]&gt;;
-  private dateHandler: DateHandler;
-  private slotManager: SlotManager;
-  private sessionManager: ISessionManager;
+export interface ISlotManager {
+  splitIntoAvailableSlots(slots: Slot[], duration: number, dateISO: string): AvailableSlot[];
+  isSlotConflicting(slot1: Slot, slot2: Slot, dateISO: string): boolean;
+  splitSlotBySession(daySlot: Slot, sessionSlot: Slot, dateISO: string): Slot[];
+}
 &nbsp;
-  constructor(
-    calendarName: string,
-    private dataLoader: IDataLoader = new DataLoader(),
-    dateHandler: DateHandler = new DateHandler(),
-  ) {
-    const data = this.dataLoader.loadCalendarData(calendarName);
-    this.durationBefore = data.durationBefore;
-    this.durationAfter = data.durationAfter;
-    this.slots = data.slots;
-    this.sessions = data.sessions;
-    this.dateHandler = dateHandler;
-    this.slotManager = new SlotManager(dateHandler, this.durationBefore, this.durationAfter);
-    this.sessionManager = new SessionManager(this.slotManager);
+export class SlotManager implements ISlotManager {
+  
+  constructor(private dateHandler: DateHandler, private durationBefore: number, private durationAfter: number) {}
+&nbsp;
+  splitIntoAvailableSlots(slots: Slot[], duration: number, dateISO: string): AvailableSlot[] {
+    const availableSlots: AvailableSlot[] = [];
+    slots.forEach(slot =&gt; {
+      let start = slot.start;
+      let resultSlot: AvailableSlot | null;
+      do {
+        resultSlot = this.createAvailableSlot(start, slot.end, duration, dateISO);
+        if (resultSlot) {
+          availableSlots.push(resultSlot);
+          start = this.dateHandler.formatDate(resultSlot.endHour, 'HH:mm');
+        }
+      } while (resultSlot);
+    });
+    return availableSlots;
   }
 &nbsp;
-  getDaySlots(date: string): Slot[] {
-    return this.slots[date] || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+  isSlotConflicting(slot1: Slot, slot2: Slot, dateISO: string): boolean {
+    const slot1Start = this.dateHandler.parseSlotTime(slot1.start, dateISO);
+    const slot1End = this.dateHandler.parseSlotTime(slot1.end, dateISO);
+    const slot2Start = this.dateHandler.parseSlotTime(slot2.start, dateISO);
+    const slot2End = this.dateHandler.parseSlotTime(slot2.end, dateISO);
+    return this.dateHandler.isWithinSlot(slot2Start, slot2End, slot1Start, slot1End);
   }
 &nbsp;
-  getSessions(date: string): Slot[] {
-    return this.sessions[date] || [];
+  splitSlotBySession(daySlot: Slot, sessionSlot: Slot, dateISO: string): Slot[] {
+    const dayStart = this.dateHandler.parseSlotTime(daySlot.start, dateISO);
+    const dayEnd = this.dateHandler.parseSlotTime(daySlot.end, dateISO);
+    const sessionStart = this.dateHandler.parseSlotTime(sessionSlot.start, dateISO);
+    const sessionEnd = this.dateHandler.parseSlotTime(sessionSlot.end, dateISO);
+    return this.dateHandler.splitSlotBySession(dayStart, dayEnd, sessionStart, sessionEnd);
   }
 &nbsp;
-  findAvailableSlots(date: string, duration: number): AvailableSlot[] {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (duration &lt;= 0) <span class="cstat-no" title="statement not covered" >throw new Error("Duration must be greater than zero");</span>
-&nbsp;
-    const dateISO = this.dateHandler.formatDateToISO(date);
-    const daySlots = this.getDaySlots(date);
-    // Filter slots based on sessions
-    const filteredSlots = this.sessionManager.filterSlotsBySessions(daySlots, this.getSessions(date), dateISO);
-    // Find available slots based on the filtered slots
-    return this.slotManager.splitIntoAvailableSlots(filteredSlots, duration, dateISO);
+  private createAvailableSlot(startSlot: string, endSlot: string, duration: number, dateISO: string): AvailableSlot | null {
+    const startHour = this.dateHandler.parseSlotTime(startSlot, dateISO);
+    const endHour = addMinutes(startHour, duration + this.durationBefore + this.durationAfter);
+    if (this.dateHandler.isAfter(endHour, endSlot, dateISO)) {
+      return null;
+    }
+    return {
+      startHour,
+      endHour,
+      clientStartHour: addMinutes(startHour, 0),
+      clientEndHour: addMinutes(startHour, duration),
+    };
   }
 }</pre></td></tr></table></pre>
 

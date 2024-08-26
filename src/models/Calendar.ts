@@ -1,7 +1,8 @@
-import { addMinutes } from 'date-fns';
-import { AvailableSlot, Slot } from '../types';
+import { Slot, AvailableSlot } from '../types';
 import { DataLoader, IDataLoader } from './DataLoader';
 import { DateHandler } from '../helpers/DateHandler';
+import { ISessionManager, SessionManager } from './SessionManager';
+import { SlotManager } from './SlotManager';
 
 export class Calendar {
   private durationBefore: number;
@@ -9,11 +10,13 @@ export class Calendar {
   private slots: Record<string, Slot[]>;
   private sessions: Record<string, Slot[]>;
   private dateHandler: DateHandler;
+  private slotManager: SlotManager;
+  private sessionManager: ISessionManager;
 
   constructor(
-    calendarName: string, 
+    calendarName: string,
     private dataLoader: IDataLoader = new DataLoader(),
-    dateHandler: DateHandler = new DateHandler()
+    dateHandler: DateHandler = new DateHandler(),
   ) {
     const data = this.dataLoader.loadCalendarData(calendarName);
     this.durationBefore = data.durationBefore;
@@ -21,6 +24,8 @@ export class Calendar {
     this.slots = data.slots;
     this.sessions = data.sessions;
     this.dateHandler = dateHandler;
+    this.slotManager = new SlotManager(dateHandler, this.durationBefore, this.durationAfter);
+    this.sessionManager = new SessionManager(this.slotManager);
   }
 
   getDaySlots(date: string): Slot[] {
@@ -32,64 +37,13 @@ export class Calendar {
   }
 
   findAvailableSlots(date: string, duration: number): AvailableSlot[] {
+    if (duration <= 0) throw new Error("Duration must be greater than zero");
+
     const dateISO = this.dateHandler.formatDateToISO(date);
     const daySlots = this.getDaySlots(date);
-    const realSpots = this.filterSlotsBySessions(daySlots, date, dateISO);
-    return this.splitIntoAvailableSlots(realSpots, duration, dateISO);
-  }
-
-  private filterSlotsBySessions(daySlots: Slot[], date: string, dateISO: string): Slot[] {
-    return daySlots.flatMap(daySlot => 
-      this.getSessionFilteredSlots(date, daySlot, dateISO)
-    );
-  }
-
-  private getSessionFilteredSlots(date: string, daySlot: Slot, dateISO: string): Slot[] {
-    const sessions = this.getSessions(date);
-    let hasConflicts = false;
-    const filteredSlots = sessions.flatMap(sessionSlot => {
-      const sessionStart = this.dateHandler.parseSlotTime(sessionSlot.start, dateISO);
-      const sessionEnd = this.dateHandler.parseSlotTime(sessionSlot.end, dateISO);
-      const slotStart = this.dateHandler.parseSlotTime(daySlot.start, dateISO);
-      const slotEnd = this.dateHandler.parseSlotTime(daySlot.end, dateISO);
-
-      if (this.dateHandler.isWithinSlot(sessionStart, sessionEnd, slotStart, slotEnd)) {
-        hasConflicts = true;
-        return this.dateHandler.splitSlotBySession(slotStart, slotEnd, sessionStart, sessionEnd);
-      }
-
-      return [];
-    });
-
-    return hasConflicts ? filteredSlots : [daySlot];
-  }
-
-  private splitIntoAvailableSlots(realSpots: Slot[], duration: number, dateISO: string): AvailableSlot[] {
-    return realSpots.flatMap(slot => {
-      let start = slot.start;
-      let availableSlots: AvailableSlot[] = [];
-      let resultSlot: AvailableSlot | null;
-      do {
-        resultSlot = this.createAvailableSlot(start, slot.end, duration, dateISO);
-        if (resultSlot) {
-          availableSlots.push(resultSlot);
-          start = this.dateHandler.formatDate(resultSlot.endHour, 'HH:mm');
-        }
-      } while (resultSlot);
-      return availableSlots;
-    });
-  }
-
-  private createAvailableSlot(startSlot: string, endSlot: string, duration: number, dateISO: string): AvailableSlot | null {
-    const startHour = this.dateHandler.parseSlotTime(startSlot, dateISO);
-    const endHour = addMinutes(startHour, this.durationBefore + duration + this.durationAfter);
-    const clientStartHour = addMinutes(startHour, this.durationBefore);
-    const clientEndHour = addMinutes(startHour, duration);
-
-    if (this.dateHandler.isAfter(endHour, endSlot, dateISO)) {
-      return null;
-    }
-
-    return { startHour, endHour, clientStartHour, clientEndHour };
+    // Filter slots based on sessions
+    const filteredSlots = this.sessionManager.filterSlotsBySessions(daySlots, this.getSessions(date), dateISO);
+    // Find available slots based on the filtered slots
+    return this.slotManager.splitIntoAvailableSlots(filteredSlots, duration, dateISO);
   }
 }
