@@ -2,6 +2,16 @@ import { format, parse, isAfter, isBefore, isEqual } from 'date-fns';
 import { fromZonedTime } from 'date-fns-tz';
 import { Slot } from '../types';
 
+
+export interface IDateHandler {
+  parseSlotTime(time: string, dateISO: string): Date;
+  formatDateToISO(date: string): string;
+  formatDate(date: Date, formatStr: string): string;
+  isAfter(date1: Date, time2: string, dateISO: string): boolean;
+  isWithinSlot(sessionStart: Date, sessionEnd: Date, slotStart: Date, slotEnd: Date): boolean;
+  splitSlotBySession(slotStart: Date, slotEnd: Date, sessionStart: Date, sessionEnd: Date): Slot[];
+}
+
 export class DateHandler {
   parseSlotTime(time: string, dateISO: string): Date {
     const parsedDate = parse(`${dateISO} ${time}`, 'yyyy-MM-dd HH:mm', new Date());
